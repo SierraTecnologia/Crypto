@@ -1,11 +1,11 @@
 <?php
 
-namespace Grafite\Crypto;
+namespace SierraTecnologia\Crypto;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Grafite\Crypto\Services\Crypto;
+use SierraTecnologia\Crypto\Services\Crypto;
 
 class CryptoProvider extends ServiceProvider
 {
@@ -38,9 +38,9 @@ class CryptoProvider extends ServiceProvider
 
         if (class_exists('Illuminate\Foundation\AliasLoader')) {
             $loader = AliasLoader::getInstance();
-            $loader->alias('Crypto', \Grafite\Crypto\Services\Crypto::class);
+            $loader->alias('Crypto', \SierraTecnologia\Crypto\Services\Crypto::class);
         } else {
-            class_alias(\Grafite\Crypto\Services\Crypto::class, 'Crypto');
+            class_alias(\SierraTecnologia\Crypto\Services\Crypto::class, 'Crypto');
         }
 
         /*
@@ -65,7 +65,7 @@ class CryptoProvider extends ServiceProvider
         */
 
         $this->commands([
-            \Grafite\Crypto\Console\KeyMaster::class,
+            \SierraTecnologia\Crypto\Console\KeyMaster::class,
         ]);
     }
 }

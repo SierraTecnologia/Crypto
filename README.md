@@ -2,10 +2,10 @@
 
 **Crypto** - Powerful and elegant cryptography tools for Laravel and Lumen
 
-[![Build Status](https://travis-ci.org/GrafiteInc/Crypto.svg?branch=master)](https://travis-ci.org/GrafiteInc/Crypto)
-[![Maintainability](https://api.codeclimate.com/v1/badges/7577ab93d33bf9b69605/maintainability)](https://codeclimate.com/github/GrafiteInc/Crypto/maintainability)
-[![Packagist](https://img.shields.io/packagist/dt/grafite/crypto.svg?maxAge=2592000)](https://packagist.org/packages/grafite/crypto)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://packagist.org/packages/grafite/crypto)
+[![Build Status](https://travis-ci.org/SierraTecnologiaInc/Crypto.svg?branch=master)](https://travis-ci.org/SierraTecnologiaInc/Crypto)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7577ab93d33bf9b69605/maintainability)](https://codeclimate.com/github/SierraTecnologiaInc/Crypto/maintainability)
+[![Packagist](https://img.shields.io/packagist/dt/sierratecnologia/crypto.svg?maxAge=2592000)](https://packagist.org/packages/sierratecnologia/crypto)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://packagist.org/packages/sierratecnologia/crypto)
 
 The Cryptograpy toolset Crypto provides a collection of methods for handy, encryption, decryption, uuid generating, app key generating and more.
 
@@ -31,12 +31,12 @@ composer create-project laravel/laravel your-project-name
 
 Then run the following to add Crypto
 ```php
-composer require "grafite/crypto"
+composer require "sierratecnologia/crypto"
 ```
 
 ## Documentation
 
-[https://docs.grafite.ca/others/crypto](https://docs.grafite.ca/others/crypto)
+[https://docs.sierratecnologia.ca/others/crypto](https://docs.sierratecnologia.ca/others/crypto)
 
 ## License
 Crypto is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

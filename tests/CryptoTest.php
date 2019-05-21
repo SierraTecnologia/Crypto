@@ -1,6 +1,6 @@
 <?php
 
-use Grafite\Crypto\Encryption\CryptoEncrypter;
+use SierraTecnologia\Crypto\Encryption\CryptoEncrypter;
 
 class CryptoTest extends PHPUnit_Framework_TestCase
 {

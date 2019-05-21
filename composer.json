@@ -1,5 +1,5 @@
 {
-    "name": "grafite/crypto",
+    "name": "sierratecnologia/crypto",
     "description": "Cryptography tools for Laravel and Lumen",
     "license": "MIT",
     "authors": [
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Grafite\\Crypto\\": "src/"
+            "SierraTecnologia\\Crypto\\": "src/"
         },
         "files": [
           "src/Helpers/crypto.php"
@@ -30,7 +30,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Grafite\\Crypto\\CryptoProvider"
+                "SierraTecnologia\\Crypto\\CryptoProvider"
             ]
         }
     },

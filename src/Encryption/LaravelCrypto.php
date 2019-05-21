@@ -1,6 +1,6 @@
 <?php
 
-namespace Grafite\Crypto\Encryption;
+namespace SierraTecnologia\Crypto\Encryption;
 
 class LaravelCrypto extends CryptoEncrypter
 {

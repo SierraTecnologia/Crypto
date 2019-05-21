@@ -1,9 +1,9 @@
 <?php
 
-namespace Grafite\Crypto\Services;
+namespace SierraTecnologia\Crypto\Services;
 
-use Grafite\Crypto\Encryption\CryptoEncrypter;
-use Grafite\Crypto\Encryption\LaravelCrypto;
+use SierraTecnologia\Crypto\Encryption\CryptoEncrypter;
+use SierraTecnologia\Crypto\Encryption\LaravelCrypto;
 
 class Crypto
 {

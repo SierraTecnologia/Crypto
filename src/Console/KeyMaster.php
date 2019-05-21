@@ -1,6 +1,6 @@
 <?php
 
-namespace Grafite\Crypto\Console;
+namespace SierraTecnologia\Crypto\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;

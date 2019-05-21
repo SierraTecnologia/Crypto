@@ -19,14 +19,14 @@ class AppTest extends Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            \Grafite\Crypto\CryptoProvider::class,
+            \SierraTecnologia\Crypto\CryptoProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'Crypto' => \Grafite\Crypto\Services\Crypto::class,
+            'Crypto' => \SierraTecnologia\Crypto\Services\Crypto::class,
         ];
     }
 
