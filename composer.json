@@ -6,6 +6,10 @@
         {
             "name": "Matt Lantz",
             "email": "mattlantz@gmail.com"
+        },
+        {
+            "name": "Ricardo Rebello Sierra",
+            "email": "ricardo@sierratecnologia.com.br"
         }
     ],
     "require": {
