@@ -7,6 +7,53 @@ use SierraTecnologia\Crypto\Encryption\LaravelCrypto;
 
 class Crypto
 {
+
+    /**
+     * Instancia de Criptografia do Usuario
+     *
+     * @return CryptoEncrypter
+     */
+    public static function crypt0()
+    {
+        return new LaravelCrypto();
+    }
+
+    /**
+     * Encrypt using the Laravel Crypto.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public static function encrypt($value)
+    {
+        return (self::crypto())->encrypt($value);
+    }
+
+    /**
+     * Decrypt using the Laravel Crypto.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public static function decrypt($value)
+    {
+        return (self::crypto())->decrypt($value);
+    }
+
+    /**
+     * Generate a UUID.
+     *
+     * @return string
+     */
+    public static function uuid()
+    {
+        return (self::crypto())->uuid();
+    }
+
+
+    
     /**
      * Make the value shareable.
      *
@@ -30,9 +77,9 @@ class Crypto
      *
      * @return string
      */
-    public static function encrypt($value)
+    public static function shareableEncrypt($value)
     {
-        return (new LaravelCrypto())->encrypt($value);
+        return (self::shareable())->encrypt($value);
     }
 
     /**
@@ -42,20 +89,17 @@ class Crypto
      *
      * @return string
      */
-    public static function decrypt($value)
+    public static function shareableDecrypt($value)
     {
-        return (new LaravelCrypto())->decrypt($value);
+        return (self::shareable())->decrypt($value);
     }
 
-    /**
-     * Generate a UUID.
-     *
-     * @return string
-     */
-    public static function uuid()
-    {
-        return (new LaravelCrypto())->uuid();
-    }
+
+
+
+
+
+
 
     /**
      * Response if string is crupto
