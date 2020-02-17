@@ -56,4 +56,22 @@ class Crypto
     {
         return (new LaravelCrypto())->uuid();
     }
+
+    /**
+     * Response if string is crupto
+     *
+     * @return string
+     */
+    public static function isCrypto($crypto)
+    {
+        if (strlen($crypto)<60) {
+            return false;
+        }
+
+        if (strripos($crypto, '\\') !== false) {
+            return false;
+        }
+
+        return true;
+    }
 }
