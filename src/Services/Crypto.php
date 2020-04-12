@@ -13,7 +13,7 @@ class Crypto
      *
      * @return CryptoEncrypter
      */
-    public static function crypt0()
+    public static function crypto()
     {
         return new LaravelCrypto();
     }
