@@ -44,17 +44,19 @@ class KeyMaster extends Command
     /**
      * Set the application key in the environment file.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return void
      */
     protected function setKeyInEnvironmentFile($key)
     {
         preg_match('/APP_KEY=?(.*)/', file_get_contents(base_path('.env')), $match);
-        file_put_contents(base_path('.env'), str_replace(
-            'APP_KEY='.$match[1],
-            'APP_KEY='.$key,
-            file_get_contents(base_path('.env'))
-        ));
+        file_put_contents(
+            base_path('.env'), str_replace(
+                'APP_KEY='.$match[1],
+                'APP_KEY='.$key,
+                file_get_contents(base_path('.env'))
+            )
+        );
     }
 
     /**

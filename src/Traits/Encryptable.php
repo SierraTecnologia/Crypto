@@ -15,6 +15,7 @@ use Crypt;
  * uses the cipher/key defined in config/app.php.
  *
  * Class Encryptable
+ *
  * @package SC2
  */
 
@@ -89,7 +90,8 @@ trait Encryptable
     }
     
     /**
-     * Aqui ja é outro exemplo que baixei */
+     * Aqui ja é outro exemplo que baixei 
+     */
     /**
      * @param $key
      *
@@ -139,7 +141,7 @@ trait Encryptable
      * Extend the Eloquent method so properties present in
      * $encrypt are decrypted when directly accessed.
      *
-     * @param $key  The attribute key
+     * @param $key The attribute key
      *
      * @return string
      */
@@ -159,8 +161,8 @@ trait Encryptable
      * Extend the Eloquent method so properties present in
      * $encrypt are encrypted whenever they are set.
      *
-     * @param $key      The attribute key
-     * @param $value    Attribute value to set
+     * @param $key   The attribute key
+     * @param $value Attribute value to set
      *
      * @return mixed
      */

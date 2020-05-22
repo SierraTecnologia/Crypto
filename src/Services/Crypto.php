@@ -64,7 +64,7 @@ class Crypto
         $key = getenv('APP_KEY');
 
         if (!$key) {
-            $key = config('app.key');
+            $key = \Illuminate\Support\Facades\Config::get('app.key');
         }
 
         return new CryptoEncrypter($key, $key);
