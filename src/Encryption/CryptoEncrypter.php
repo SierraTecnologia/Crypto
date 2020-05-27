@@ -132,7 +132,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     /**
      * Encode the string to be used as a url slug.
      *
-     * @param  string
+     * @param string
      *
      * @return string
      */
@@ -144,7 +144,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     /**
      * Decode the string to be used as a url slug.
      *
-     * @param  string
+     * @param string
      *
      * @return string
      */
