@@ -108,7 +108,7 @@ class Crypto
      */
     public static function isCrypto($crypto)
     {
-        if (strlen($crypto)<60) {
+        if (strlen($crypto)<50) {
             return false;
         }
 
