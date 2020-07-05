@@ -39,6 +39,9 @@ class Crypto
      */
     public static function decrypt($value)
     {
+        if (!self::isCrypto($value)) {
+            return $value;
+        }
         return (self::crypto())->decrypt($value);
     }
 
@@ -117,5 +120,10 @@ class Crypto
         }
 
         return true;
+    }
+
+    public static function url_encode($value)
+    {
+        return self::decrypt($value);
     }
 }

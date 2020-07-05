@@ -95,6 +95,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     public function encrypt($value)
     {
         $iv = substr(md5(random_bytes(16)), 0, 16);
+        
         $encrypted = openssl_encrypt($value, 'AES-256-CBC', $this->encryptionKey, null, $iv);
 
         return $this->url_encode($iv.$encrypted);
