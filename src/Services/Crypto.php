@@ -124,6 +124,11 @@ class Crypto
 
     public static function url_encode($value)
     {
+        return self::encrypt($value);
+    }
+
+    public static function url_decode($value)
+    {
         return self::decrypt($value);
     }
 }
