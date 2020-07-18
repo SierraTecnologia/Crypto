@@ -124,11 +124,19 @@ class Crypto
 
     public static function url_encode($value)
     {
-        return self::encrypt($value);
+        return self::urlEncode($value);
+    }
+    public static function urlEncode($value)
+    {
+        return self::shareableEncrypt($value);
     }
 
     public static function url_decode($value)
     {
-        return self::decrypt($value);
+        return self::urlDecode($value);
+    }
+    public static function urlDecode($value)
+    {
+        return self::shareableDecrypt($value);
     }
 }
