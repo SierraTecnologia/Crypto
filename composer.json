@@ -1,15 +1,24 @@
 {
     "name": "sierratecnologia/crypto",
     "description": "Cryptography tools for Laravel and Lumen",
+    "type": "library",
+    "keywords": [
+        "sierratecnologia",
+        "crypto"
+    ],
     "license": "MIT",
+    "homepage": "https://sierratecnologia.com/packages/crypto/",
+    "support": {
+        "email": "help@sierratecnologia.com",
+        "issues": "https://github.com/sierratecnologia/crypto/issues",
+        "source": "https://github.com/sierratecnologia/crypto",
+        "docs": "https://github.com/sierratecnologia/crypto/blob/master/README.md"
+    },
     "authors": [
         {
-            "name": "Matt Lantz",
-            "email": "mattlantz@gmail.com"
-        },
-        {
-            "name": "Ricardo Rebello Sierra",
-            "email": "ricardo@sierratecnologia.com.br"
+            "name": "SierraTecnologia",
+            "homepage": "https://sierratecnologia.com.br",
+            "email": "help@sierratecnologia.com.br"
         }
     ],
     "require": {
