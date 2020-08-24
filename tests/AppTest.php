@@ -32,7 +32,7 @@ class AppTest extends Orchestra\Testbench\TestCase
         ];
     }
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         $this->withFactories(__DIR__.'/../src/Models/Factories');
