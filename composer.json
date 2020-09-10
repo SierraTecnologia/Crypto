@@ -24,6 +24,7 @@
     "require": {
         "php": ">=5.6.4",
         "illuminate/support": "^6.0|^7.0",
+        "mdanter/ecc": "^0.5",
         "ramsey/uuid": ">=3.8"
     },
     "require-dev": {
