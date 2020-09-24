@@ -137,7 +137,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
      *
      * @return string
      */
-    protected function url_encode($string)
+    protected function url_encode(string $string)
     {
         return rawurlencode($this->url_base64_encode($string));
     }
@@ -149,7 +149,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
      *
      * @return string
      */
-    protected function url_decode($string)
+    protected function url_decode(string $string)
     {
         return $this->url_base64_decode(rawurldecode($string));
     }

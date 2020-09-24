@@ -109,7 +109,7 @@ class Crypto
      *
      * @return string
      */
-    public static function isCrypto($crypto)
+    public static function isCrypto(string $crypto)
     {
         if (strlen($crypto)<50) {
             return false;
