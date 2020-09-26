@@ -22,26 +22,6 @@ class KeyMaster extends Command
     protected $description = 'Crypto will generate a new encryption key for your app';
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        if (!file_exists(base_path('.env'))) {
-            file_put_contents(base_path('.env'), '');
-        }
-
-        try {
-            $key = $this->generateRandomKey();
-            $this->setKeyInEnvironmentFile($key);
-            $this->info('Your APP_KEY has been changed to: '.$key);
-        } catch (Exception $e) {
-            $this->error('We could not set the APP_KEY');
-        }
-    }
-
-    /**
      * Set the application key in the environment file.
      *
      * @param  string $key
@@ -64,7 +44,7 @@ class KeyMaster extends Command
      *
      * @return string
      */
-    protected function generateRandomKey()
+    protected function generateRandomKey(): string
     {
         return 'base64:'.base64_encode(random_bytes(32));
     }

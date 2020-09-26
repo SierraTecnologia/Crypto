@@ -11,9 +11,9 @@ class Crypto
     /**
      * Instancia de Criptografia do Usuario
      *
-     * @return CryptoEncrypter
+     * @return LaravelCrypto
      */
-    public static function crypto()
+    public static function crypto(): LaravelCrypto
     {
         return new LaravelCrypto();
     }
@@ -107,9 +107,9 @@ class Crypto
     /**
      * Response if string is crupto
      *
-     * @return string
+     * @return bool
      */
-    public static function isCrypto(string $crypto)
+    public static function isCrypto(string $crypto): bool
     {
         if (strlen($crypto)<50) {
             return false;
@@ -121,21 +121,11 @@ class Crypto
 
         return true;
     }
-
-    public static function url_encode($value)
-    {
-        return self::urlEncode($value);
-    }
-    public static function urlEncode($value)
+    public static function urlEncode($value): string
     {
         return self::shareableEncrypt($value);
     }
-
-    public static function url_decode($value)
-    {
-        return self::urlDecode($value);
-    }
-    public static function urlDecode($value)
+    public static function urlDecode($value): string
     {
         return self::shareableDecrypt($value);
     }

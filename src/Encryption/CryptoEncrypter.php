@@ -21,13 +21,6 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     protected $session;
 
     /**
-     * Length of the hash to be returned.
-     *
-     * @var interger
-     */
-    protected $length;
-
-    /**
      * Encrypted Key.
      *
      * @var string
@@ -137,7 +130,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
      *
      * @return string
      */
-    protected function url_encode(string $string)
+    protected function url_encode(string $string): string
     {
         return rawurlencode($this->url_base64_encode($string));
     }
@@ -149,7 +142,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
      *
      * @return string
      */
-    protected function url_decode(string $string)
+    protected function url_decode(string $string): string
     {
         return $this->url_base64_decode(rawurldecode($string));
     }
