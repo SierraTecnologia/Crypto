@@ -107,7 +107,7 @@ class Crypto
     /**
      * Response if string is crupto
      *
-     * @return string
+     * @return bool
      */
     public static function isCrypto(string $crypto)
     {
@@ -122,19 +122,31 @@ class Crypto
         return true;
     }
 
+    /**
+     * @return string
+     */
     public static function url_encode($value)
     {
         return self::urlEncode($value);
     }
+    /**
+     * @return string
+     */
     public static function urlEncode($value)
     {
         return self::shareableEncrypt($value);
     }
 
+    /**
+     * @return string
+     */
     public static function url_decode($value)
     {
         return self::urlDecode($value);
     }
+    /**
+     * @return string
+     */
     public static function urlDecode($value)
     {
         return self::shareableDecrypt($value);
