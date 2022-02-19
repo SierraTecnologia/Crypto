@@ -4,6 +4,10 @@ namespace SierraTecnologia\Crypto\Encryption;
 
 use Ramsey\Uuid\Uuid;
 
+
+/**
+ * @author Ricardo Sierra <sierra.csi@gmail.com>
+ */
 class CryptoEncrypter implements CryptoEncrypterInterface
 {
     /**
@@ -23,7 +27,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     /**
      * Length of the hash to be returned.
      *
-     * @var interger
+     * @var integer
      */
     protected $length;
 
@@ -104,9 +108,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     /**
      * Decrypt a string.
      *
-     * @param string $value Encrypted string
-     *
-     * @throws Exception
+     * @param string $value Encrypted string 
      *
      * @return string
      */

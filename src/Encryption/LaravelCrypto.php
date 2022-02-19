@@ -2,6 +2,10 @@
 
 namespace SierraTecnologia\Crypto\Encryption;
 
+
+/**
+ * @author Ricardo Sierra <sierra.csi@gmail.com>
+ */
 class LaravelCrypto extends CryptoEncrypter
 {
     /**

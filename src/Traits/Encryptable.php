@@ -2,7 +2,7 @@
 
 namespace SierraTecnologia\Crypto\Traits;
 
-use Crypt;
+use Crypto;
 
 /**
  * Used to encrypt/decrypt Eloquent Model properties.
@@ -11,12 +11,13 @@ use Crypt;
  * decrypted when accessed, or when the model
  * is converted toJson() or toArray().
  *
- * Encryption is handled by the Crypt helper function, which
+ * Encryption is handled by the Crypto helper function, which
  * uses the cipher/key defined in config/app.php.
  *
  * Class Encryptable
  *
  * @package SC2
+ * @author Ricardo Sierra <sierra.csi@gmail.com>
  */
 
 trait Encryptable
@@ -48,7 +49,7 @@ trait Encryptable
     protected function decryptValue($value)
     {
         if ($value !== null && !empty($value)) {
-            return Crypt::decrypt($value);
+            return Crypto::decrypt($value);
         }
 
         return $value;
@@ -65,11 +66,29 @@ trait Encryptable
     public function setAttribute($key, $value)
     {
         if ($value !== null && in_array($key, $this->encrypted ?? [])) {
-            $value = Crypt::encrypt($value);
+            $value = Crypto::encrypt($value);
         }
 
         return parent::setAttribute($key, $value);
     }
+
+    // /**
+    //  * Extend the Eloquent method so properties present in
+    //  * $encrypt are encrypted whenever they are set.
+    //  *
+    //  * @param $key   The attribute key
+    //  * @param $value Attribute value to set
+    //  *
+    //  * @return mixed
+    //  */
+    // public function setAttribute($key, $value)
+    // {
+    //     if ($this->encryptable($key)) {
+    //         $value = $this->encryptAttribute($value);
+    //     }
+
+    //     return parent::setAttribute($key, $value);
+    // }
 
     /**
      * Retrieves all values and decrypts them if needed.
@@ -155,26 +174,6 @@ trait Encryptable
 
         return $value;
     }
-
-
-    /**
-     * Extend the Eloquent method so properties present in
-     * $encrypt are encrypted whenever they are set.
-     *
-     * @param $key   The attribute key
-     * @param $value Attribute value to set
-     *
-     * @return mixed
-     */
-    public function setAttribute($key, $value)
-    {
-        if ($this->encryptable($key)) {
-            $value = $this->encryptAttribute($value);
-        }
-
-        return parent::setAttribute($key, $value);
-    }
-
 
     /**
      * Extend the Eloquent method so properties in

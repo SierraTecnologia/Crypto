@@ -4,7 +4,11 @@ namespace SierraTecnologia\Crypto\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Exception;
 
+/**
+ * @author Ricardo Sierra <sierra.csi@gmail.com>
+ */
 class KeyMaster extends Command
 {
     /**
