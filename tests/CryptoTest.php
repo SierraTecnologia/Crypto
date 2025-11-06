@@ -6,7 +6,7 @@ class CryptoTest extends PHPUnit_Framework_TestCase
 {
     protected $encrypter;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->encrypter = new CryptoEncrypter('myapikey', 'mysessionkey');
     }

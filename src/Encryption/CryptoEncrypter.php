@@ -4,6 +4,10 @@ namespace SierraTecnologia\Crypto\Encryption;
 
 use Ramsey\Uuid\Uuid;
 
+
+/**
+ * @author Ricardo Sierra <sierra.csi@gmail.com>
+ */
 class CryptoEncrypter implements CryptoEncrypterInterface
 {
     /**
@@ -23,7 +27,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     /**
      * Length of the hash to be returned.
      *
-     * @var interger
+     * @var integer
      */
     protected $length;
 
@@ -95,6 +99,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     public function encrypt($value)
     {
         $iv = substr(md5(random_bytes(16)), 0, 16);
+        
         $encrypted = openssl_encrypt($value, 'AES-256-CBC', $this->encryptionKey, null, $iv);
 
         return $this->url_encode($iv.$encrypted);
@@ -103,9 +108,7 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     /**
      * Decrypt a string.
      *
-     * @param string $value Encrypted string
-     *
-     * @throws Exception
+     * @param string $value Encrypted string 
      *
      * @return string
      */
@@ -132,11 +135,11 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     /**
      * Encode the string to be used as a url slug.
      *
-     * @param  string
+     * @param string
      *
      * @return string
      */
-    protected function url_encode($string)
+    protected function url_encode(string $string)
     {
         return rawurlencode($this->url_base64_encode($string));
     }
@@ -144,11 +147,11 @@ class CryptoEncrypter implements CryptoEncrypterInterface
     /**
      * Decode the string to be used as a url slug.
      *
-     * @param  string
+     * @param string
      *
      * @return string
      */
-    protected function url_decode($string)
+    protected function url_decode(string $string)
     {
         return $this->url_base64_decode(rawurldecode($string));
     }

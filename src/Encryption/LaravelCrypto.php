@@ -2,6 +2,10 @@
 
 namespace SierraTecnologia\Crypto\Encryption;
 
+
+/**
+ * @author Ricardo Sierra <sierra.csi@gmail.com>
+ */
 class LaravelCrypto extends CryptoEncrypter
 {
     /**
@@ -10,7 +14,7 @@ class LaravelCrypto extends CryptoEncrypter
      */
     public function __construct()
     {
-        $app_key = config('app.key') ?: 'unsafe';
+        $app_key = \Illuminate\Support\Facades\Config::get('app.key') ?: 'unsafe';
         $auth_key = auth()->id() ?: 0;
 
         parent::__construct($app_key, $auth_key);

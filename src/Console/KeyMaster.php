@@ -4,7 +4,11 @@ namespace SierraTecnologia\Crypto\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Exception;
 
+/**
+ * @author Ricardo Sierra <sierra.csi@gmail.com>
+ */
 class KeyMaster extends Command
 {
     /**
@@ -24,7 +28,7 @@ class KeyMaster extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
@@ -44,17 +48,19 @@ class KeyMaster extends Command
     /**
      * Set the application key in the environment file.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return void
      */
     protected function setKeyInEnvironmentFile($key)
     {
         preg_match('/APP_KEY=?(.*)/', file_get_contents(base_path('.env')), $match);
-        file_put_contents(base_path('.env'), str_replace(
-            'APP_KEY='.$match[1],
-            'APP_KEY='.$key,
-            file_get_contents(base_path('.env'))
-        ));
+        file_put_contents(
+            base_path('.env'), str_replace(
+                'APP_KEY='.$match[1],
+                'APP_KEY='.$key,
+                file_get_contents(base_path('.env'))
+            )
+        );
     }
 
     /**

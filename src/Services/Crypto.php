@@ -39,6 +39,9 @@ class Crypto
      */
     public static function decrypt($value)
     {
+        if (!self::isCrypto($value)) {
+            return $value;
+        }
         return (self::crypto())->decrypt($value);
     }
 
@@ -64,7 +67,7 @@ class Crypto
         $key = getenv('APP_KEY');
 
         if (!$key) {
-            $key = config('app.key');
+            $key = \Illuminate\Support\Facades\Config::get('app.key');
         }
 
         return new CryptoEncrypter($key, $key);
@@ -104,11 +107,11 @@ class Crypto
     /**
      * Response if string is crupto
      *
-     * @return string
+     * @return bool
      */
-    public static function isCrypto($crypto)
+    public static function isCrypto(string $crypto)
     {
-        if (strlen($crypto)<60) {
+        if (strlen($crypto)<50) {
             return false;
         }
 
@@ -117,5 +120,35 @@ class Crypto
         }
 
         return true;
+    }
+
+    /**
+     * @return string
+     */
+    public static function url_encode($value)
+    {
+        return self::urlEncode($value);
+    }
+    /**
+     * @return string
+     */
+    public static function urlEncode($value)
+    {
+        return self::shareableEncrypt($value);
+    }
+
+    /**
+     * @return string
+     */
+    public static function url_decode($value)
+    {
+        return self::urlDecode($value);
+    }
+    /**
+     * @return string
+     */
+    public static function urlDecode($value)
+    {
+        return self::shareableDecrypt($value);
     }
 }

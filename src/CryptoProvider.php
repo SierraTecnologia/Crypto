@@ -23,13 +23,17 @@ class CryptoProvider extends ServiceProvider
         */
 
         // Crypto
-        Blade::directive('crypto_encrypt', function ($expression) {
-            return "<?php echo Crypto::encrypt($expression); ?>";
-        });
+        Blade::directive(
+            'crypto_encrypt', function ($expression) {
+                return "<?php echo Crypto::encrypt($expression); ?>";
+            }
+        );
 
-        Blade::directive('crypto_decrypt', function ($expression) {
-            return "<?php echo Crypto::encrypt($expression); ?>";
-        });
+        Blade::directive(
+            'crypto_decrypt', function ($expression) {
+                return "<?php echo Crypto::encrypt($expression); ?>";
+            }
+        );
     }
 
     /**
@@ -45,9 +49,11 @@ class CryptoProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         */
 
-        $this->app->singleton('Crypto', function () {
-            return new Crypto();
-        });
+        $this->app->singleton(
+            'Crypto', function () {
+                return new Crypto();
+            }
+        );
 
         if (class_exists('Illuminate\Foundation\AliasLoader')) {
             $loader = AliasLoader::getInstance();
@@ -62,8 +68,10 @@ class CryptoProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         */
 
-        $this->commands([
+        $this->commands(
+            [
             \SierraTecnologia\Crypto\Console\KeyMaster::class,
-        ]);
+            ]
+        );
     }
 }
