@@ -1,7 +1,47 @@
+# Dependencies
 /vendor
-composer.phar
-.DS_Store
-
 vendor/
+composer.phar
+composer.lock
+
+# IDE
+.DS_Store
 .idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build artifacts
 build/
+coverage.xml
+.phpunit.cache/
+.phpunit.result.cache
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+
+# Test coverage
+coverage/
+clover.xml
+
+# PHPStan
+phpstan.neon.dist
+.phpstan.cache/
+
+# Psalm
+psalm.xml.dist
+.psalm/
+
+# PHPCS
+phpcs-report.xml
+.phpcs.cache
+
+# PHPMD
+phpmd-report.xml
+
+# GrumPHP
+.grumphp.cache
