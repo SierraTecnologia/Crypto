@@ -22,20 +22,27 @@
         }
     ],
     "require": {
-        "php": ">=5.0",
+        "php": "^8.0 || ^8.1 || ^8.2 || ^8.3",
         "ext-gmp": "*",
+        "ext-openssl": "*",
         "defuse/php-encryption": "^2.2",
-        "illuminate/support": "^5.0 || ^6.0 || ^7.0 || ^8.0",
+        "illuminate/support": "^8.0 || ^9.0 || ^10.0 || ^11.0",
         "mdanter/ecc": "^0.5",
-        "ramsey/uuid": "^3.8|^4.0"
+        "ramsey/uuid": "^3.8 || ^4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.0|^9.0|^10.0",
-        "mockery/mockery": ">=0.9.4",
-        "mikey179/vfsstream": ">=1.6",
-        "orchestra/testbench": "^4.0|^5.0|^6.0",
-        "phpro/grumphp": "^1.3",
-        "psalm/plugin-laravel": "^1.5"
+        "phpunit/phpunit": "^9.5 || ^10.0",
+        "mockery/mockery": "^1.4",
+        "mikey179/vfsstream": "^1.6",
+        "orchestra/testbench": "^6.0 || ^7.0 || ^8.0 || ^9.0",
+        "phpro/grumphp": "^1.3 || ^2.0",
+        "vimeo/psalm": "^4.0 || ^5.0",
+        "psalm/plugin-laravel": "^1.5 || ^2.0",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpmd/phpmd": "^2.13"
     },
     "autoload": {
         "psr-4": {
@@ -62,6 +69,41 @@
     "config": {
         "allow-plugins": {
             "phpro/grumphp": true
-        }
+        },
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-html build/coverage --coverage-clover coverage.xml",
+        "phpcs": "phpcs --standard=phpcs.xml",
+        "phpcs:fix": "phpcbf --standard=phpcs.xml",
+        "phpstan": "phpstan analyse --memory-limit=2G",
+        "psalm": "psalm --show-info=true",
+        "phpmd": "phpmd src/ text phpmd.xml",
+        "check": [
+            "@phpcs",
+            "@phpstan",
+            "@psalm",
+            "@phpmd",
+            "@test"
+        ],
+        "check:ci": [
+            "@phpcs",
+            "@phpstan",
+            "@psalm",
+            "@test"
+        ]
+    },
+    "scripts-descriptions": {
+        "test": "Run unit tests",
+        "test:coverage": "Run tests with coverage report",
+        "phpcs": "Check code style (PSR-12)",
+        "phpcs:fix": "Fix code style issues automatically",
+        "phpstan": "Run static analysis with PHPStan",
+        "psalm": "Run static analysis with Psalm",
+        "phpmd": "Run mess detector",
+        "check": "Run all quality checks",
+        "check:ci": "Run CI quality checks"
     }
 }

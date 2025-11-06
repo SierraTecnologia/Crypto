@@ -1,0 +1,75 @@
+parameters:
+    # Analysis level (0-9, 9 is the strictest)
+    level: 8
+
+    # Paths to analyze
+    paths:
+        - src
+
+    # Paths to exclude
+    excludePaths:
+        - src/Helpers/crypto.php
+        - tests/Mocks/*
+
+    # Bootstrap file
+    bootstrapFiles:
+        - vendor/autoload.php
+
+    # Check missing type hints
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+
+    # Additional checks
+    checkAlwaysTrueCheckTypeFunctionCall: true
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    checkExplicitMixedMissingReturn: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    checkMissingCallableSignature: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkUninitializedProperties: true
+    checkDynamicProperties: true
+
+    # Report unmatched ignored errors
+    reportUnmatchedIgnoredErrors: true
+
+    # Treat PHP warnings as errors
+    treatPhpDocTypesAsCertain: true
+
+    # Ignore errors (specific cases)
+    ignoreErrors:
+        # Allow dynamic properties in Laravel models
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$encrypted#'
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$encryptable#'
+
+        # Allow Facade access
+        - '#Call to an undefined static method Crypto::#'
+
+        # OpenSSL functions may return false
+        - '#Parameter .* of function openssl_(encrypt|decrypt) expects string, string\|false given#'
+
+    # Stub files for better analysis
+    stubFiles:
+        # Add Laravel stubs if needed
+
+    # Parallel processing
+    parallel:
+        jobSize: 20
+        maximumNumberOfProcesses: 4
+        minimumNumberOfJobsPerProcess: 2
+
+    # Memory limit
+    memoryLimit: 512M
+
+    # Report statistics
+    reportStaticMethodSignatures: true
+
+    # Blade templates (if needed)
+    # bladeDirectives: []
+
+    # Additional rules
+    excludes_analyse:
+        - vendor
+        - storage
+        - database/migrations

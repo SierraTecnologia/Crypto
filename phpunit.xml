@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true" bootstrap="vendor/autoload.php">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         executionOrder="depends,defects"
+         beStrictAboutOutputDuringTests="true"
+         failOnRisky="true"
+         failOnWarning="true">
     <testsuites>
-        <testsuite name="Application Test Suite">
-            <directory>test/</directory>
+        <testsuite name="Crypto Test Suite">
+            <directory>tests/</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+    <coverage>
+        <report>
+            <clover outputFile="build/logs/clover.xml"/>
+            <html outputDirectory="build/coverage"/>
+            <text outputFile="build/coverage.txt"/>
+        </report>
+    </coverage>
+    <source>
+        <include>
             <directory suffix=".php">src/</directory>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
-    </logging>
+        </include>
+    </source>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:JZvB5yvsg7wRvIy8H6Yq1234567890abcdefghij="/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+    </php>
 </phpunit>
