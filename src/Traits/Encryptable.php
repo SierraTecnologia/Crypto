@@ -72,24 +72,6 @@ trait Encryptable
         return parent::setAttribute($key, $value);
     }
 
-    // /**
-    //  * Extend the Eloquent method so properties present in
-    //  * $encrypt are encrypted whenever they are set.
-    //  *
-    //  * @param $key   The attribute key
-    //  * @param $value Attribute value to set
-    //  *
-    //  * @return mixed
-    //  */
-    // public function setAttribute($key, $value)
-    // {
-    //     if ($this->encryptable($key)) {
-    //         $value = $this->encryptAttribute($value);
-    //     }
-
-    //     return parent::setAttribute($key, $value);
-    // }
-
     /**
      * Retrieves all values and decrypts them if needed.
      *
@@ -102,93 +84,6 @@ trait Encryptable
         foreach ($this->encrypted ?? [] as $key) {
             if (isset($attributes[$key])) {
                 $attributes[$key] = $this->decryptValue($attributes[$key]);
-            }
-        }
-
-        return $attributes;
-    }
-    
-    /**
-     * Aqui ja é outro exemplo que baixei 
-     */
-    /**
-     * @param $key
-     *
-     * @return bool
-     */
-    public function encryptable($key)
-    {
-        return in_array($key, $this->encryptable);
-    }
-
-
-    /**
-     * Decrypt a value.
-     *
-     * @param $value
-     *
-     * @return string
-     */
-    protected function decryptAttribute($value)
-    {
-        if ($value) {
-            $value = decrypt($value);
-        }
-
-        return $value;
-    }
-
-
-    /**
-     * Encrypt a value.
-     *
-     * @param $value
-     *
-     * @return string
-     */
-    protected function encryptAttribute($value)
-    {
-        if ($value) {
-            $value = encrypt($value);
-        }
-
-        return $value;
-    }
-
-
-    /**
-     * Extend the Eloquent method so properties present in
-     * $encrypt are decrypted when directly accessed.
-     *
-     * @param $key The attribute key
-     *
-     * @return string
-     */
-    public function getAttribute($key)
-    {
-        $value = parent::getAttribute($key);
-
-        if ($this->encryptable($key)) {
-            $value = $this->decryptAttribute($value);
-        }
-
-        return $value;
-    }
-
-    /**
-     * Extend the Eloquent method so properties in
-     * $encrypt are decrypted when toArray()
-     * or toJson() is called.
-     *
-     * @return mixed
-     */
-    public function getArrayableAttributes()
-    {
-        $attributes = parent::getArrayableAttributes();
-
-        foreach ($attributes as $key => $attribute) {
-            if ($this->encryptable($key)) {
-                $attributes[$key] = $this->decryptAttribute($attribute);
             }
         }
 

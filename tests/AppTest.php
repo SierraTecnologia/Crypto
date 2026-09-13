@@ -32,17 +32,15 @@ class AppTest extends Orchestra\Testbench\TestCase
         ];
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
-        $this->withFactories(__DIR__.'/../src/Models/Factories');
         $this->artisan(
             'migrate', [
             '--database' => 'testbench'
             ]
         );
         $this->withoutMiddleware();
-        $this->withoutEvents();
     }
 
     public function testCrypto()

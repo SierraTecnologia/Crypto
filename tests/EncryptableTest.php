@@ -1,109 +1,52 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chris
- * Date: 19/05/18
- * Time: 16:20.
- */
 
-namespace Cheezykins\LaravelEncryptable\Test;
+namespace SierraTecnologia\Crypto\Tests;
 
 use Cheezykins\LaravelEncryptable\Test\Mocks\EncryptableModel;
-use Illuminate\Support\Facades\Crypt;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Orchestra\Testbench\TestCase;
+use SierraTecnologia\Crypto\CryptoProvider;
 
-class EncryptableTest extends MockeryTestCase
+require_once __DIR__.'/Mocks/EncryptableModel.php';
+
+class EncryptableTest extends TestCase
 {
-    public function testNonEncryptedUnchanged()
+    protected function getPackageProviders($app): array
     {
-        Crypt::shouldReceive('encrypt')
-            ->never();
-
-        $x = new EncryptableModel();
-        $x->setAttribute('name', 'testing');
-        $this->assertArrayHasKey('name', $x->getAttributes());
-        $this->assertEquals('testing', $x->getAttributes()['name']);
+        return [CryptoProvider::class];
     }
 
-    public function testNonEncryptedDoesntDecrypt()
+    protected function defineEnvironment($app): void
     {
-        Crypt::shouldReceive('decrypt')
-            ->never();
-
-        $x = new EncryptableModel();
-        $x->setAttribute('name', 'testing');
-        $this->assertArrayHasKey('name', $x->getAttributes());
-        $this->assertEquals('testing', $x->getAttributes()['name']);
-        $this->assertEquals('testing', $x->getAttribute('name'));
+        $app['config']->set(
+            'app.key',
+            'base64:JZvB5yvsg7wRvIy8H6Yq1234567890abcdefghij='
+        );
     }
 
-    public function testEncryptsAttribute()
+    public function test_non_encrypted_attribute_is_unchanged(): void
     {
-        Crypt::shouldReceive('encrypt')
-            ->once()
-            ->with('this is secret data!')
-            ->andReturn('encrypted!');
+        $model = new EncryptableModel();
+        $model->setAttribute('name', 'testing');
 
-        $x = new EncryptableModel();
-
-        $x->setAttribute('securedata', 'this is secret data!');
-        $this->assertArrayHasKey('securedata', $x->getAttributes());
-        $this->assertEquals('encrypted!', $x->getAttributes()['securedata']);
+        $this->assertSame('testing', $model->getAttribute('name'));
     }
 
-    public function testDecryptsAttribute()
+    public function test_encrypted_attribute_round_trips(): void
     {
-        Crypt::shouldReceive('encrypt')
-            ->with('this is secret data!')
-            ->andReturn('encrypted!');
+        $model = new EncryptableModel();
+        $model->setAttribute('securedata', 'this is secret data!');
 
-        Crypt::shouldReceive('decrypt')
-            ->once()
-            ->with('encrypted!')
-            ->andReturn('this is secret data!');
-
-        $x = new EncryptableModel();
-
-        $x->setAttribute('securedata', 'this is secret data!');
-        $this->assertEquals('encrypted!', $x->getAttributes()['securedata']);
-        $this->assertEquals('this is secret data!', $x->getAttribute('securedata'));
+        $this->assertNotSame('this is secret data!', $model->getAttributes()['securedata']);
+        $this->assertSame('this is secret data!', $model->getAttribute('securedata'));
+        $this->assertSame('this is secret data!', $model->toArray()['securedata']);
     }
 
-    public function testDoesntEncryptNulls()
+    public function test_null_encrypted_attribute_remains_null(): void
     {
-        $x = new EncryptableModel();
+        $model = new EncryptableModel();
+        $model->setAttribute('securedata', null);
 
-        $x->setAttribute('securedata', null);
-        $this->assertNull($x->getAttributes()['securedata']);
-    }
-
-    public function testDoesntDecryptNulls()
-    {
-        $x = new EncryptableModel();
-
-        $x->setAttribute('securedata', null);
-        $this->assertNull($x->getAttribute('securedata'));
-    }
-
-    public function testArrayDecryption()
-    {
-        Crypt::shouldReceive('encrypt')
-            ->with('this is secret data!')
-            ->andReturn('encrypted!');
-
-        Crypt::shouldReceive('decrypt')
-            ->with('encrypted!')
-            ->andReturn('this is secret data!');
-
-        $x = new EncryptableModel();
-
-        $x->setAttribute('name', 'test name');
-        $x->setAttribute('email', 'test@test.test');
-        $x->setAttribute('securedata', 'this is secret data!');
-
-        $array = $x->attributesToArray();
-
-        $this->assertEquals('encrypted!', $x->getAttributes()['securedata']);
-        $this->assertEquals('this is secret data!', $array['securedata']);
+        $this->assertNull($model->getAttribute('securedata'));
+        $this->assertNull($model->toArray()['securedata']);
     }
 }
