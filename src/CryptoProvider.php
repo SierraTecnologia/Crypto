@@ -55,10 +55,17 @@ class CryptoProvider extends ServiceProvider
             }
         );
 
+        $this->app->singleton(
+            Crypto::class, function () {
+                return new Crypto();
+            }
+        );
+
         if (class_exists('Illuminate\Foundation\AliasLoader')) {
             $loader = AliasLoader::getInstance();
             $loader->alias('Crypto', \SierraTecnologia\Crypto\Services\Crypto::class);
-        } else {
+        }
+        if (!class_exists('Crypto')) {
             class_alias(\SierraTecnologia\Crypto\Services\Crypto::class, 'Crypto');
         }
 
