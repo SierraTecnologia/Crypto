@@ -104,5 +104,5 @@
         "check": "Run all quality checks",
         "check:ci": "Run CI quality checks"
     },
-    "version": "2.1.0"
+    "version": "2.3.0"
 }
