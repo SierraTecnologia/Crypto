@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-gmp": "*",
         "ext-openssl": "*",
         "defuse/php-encryption": "^2.3",
@@ -40,15 +40,12 @@
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
         "squizlabs/php_codesniffer": "^4.0",
-        "phpmd/phpmd": "^2.11"
+        "phpmd/phpmd": "^3.0"
     },
     "autoload": {
         "psr-4": {
             "SierraTecnologia\\Crypto\\": "src/"
-        },
-        "files": [
-            "src/Helpers/crypto.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -104,5 +101,5 @@
         "check": "Run all quality checks",
         "check:ci": "Run CI quality checks"
     },
-    "version": "2.3.0"
+    "version": "2.4.0"
 }
